@@ -268,7 +268,7 @@ dependencies {
         android:allowBackup="false"
         android:label="Time Limiter"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Material3.DayNight.NoActionBar" />
+        android:theme="@style/Theme.TimeLimiter" />
 </manifest>
 ```
 
@@ -3484,7 +3484,7 @@ Register it in the manifest inside `<application>`:
     android:launchMode="singleInstance"
     android:noHistory="true"
     android:taskAffinity=""
-    android:theme="@style/Theme.Material3.DayNight.NoActionBar" />
+    android:theme="@style/Theme.TimeLimiter" />
 ```
 
 - [ ] **Step 5: Run the tests to verify they pass**
