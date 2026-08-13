@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+      Platform theme for the launch window only; Compose supplies the real styling.
+      Parented on a framework theme so :app needs no Material Components dependency.
+    -->
+    <style name="Theme.TimeLimiter" parent="android:Theme.Material.Light.NoActionBar" />
+</resources>
