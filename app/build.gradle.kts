@@ -20,6 +20,16 @@ android {
 
     buildFeatures { compose = true }
 
+    // The DAO tests live in a shared source set so the same file runs twice: on the JVM
+    // under Robolectric (so CI verifies it) and on a device as an instrumented test.
+    sourceSets["test"].kotlin.srcDir("src/sharedTest/kotlin")
+    sourceSets["androidTest"].kotlin.srcDir("src/sharedTest/kotlin")
+    sourceSets["androidTest"].assets.srcDir("$projectDir/schemas")
+
+    testOptions {
+        unitTests.isIncludeAndroidResources = true
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -31,6 +41,10 @@ android {
             isMinifyEnabled = false
         }
     }
+}
+
+ksp {
+    arg("room.schemaLocation", "$projectDir/schemas")
 }
 
 dependencies {
@@ -56,6 +70,10 @@ dependencies {
     testImplementation(libs.truth)
     testImplementation(libs.coroutines.test)
     testImplementation(testFixtures(project(":rules")))
+    testImplementation(libs.androidx.junit)
+    testImplementation(libs.robolectric)
+    androidTestImplementation(libs.truth)
+    androidTestImplementation(libs.coroutines.test)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.test.runner)
     androidTestImplementation(libs.room.testing)
